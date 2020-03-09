@@ -1,0 +1,9 @@
+https://www.ime.usp.br/~cris/aulas/18_2_331/
+Triangulação de polígonos: teoria, primitivas geométricas, problemas de galeria de arte, algoritmos, questões de implementação. Particionamento de polígonos: particionamento em polígonos monótonos, trapezoidalização de polígonos, particionamento em polígonos convexos. Fecho convexo no plano: algoritmo embrulho-para-presente, algoritmo Quickhull, algoritmo de Graham, algoritmo incremental, algoritmo de divisão-e-conquista, cota inferior. Fecho convexo tridimensional: poliedros, politopos regulares, fórmula de Euler, estruturas de dados, primitivas geométricas, algoritmo embrulho-para-presente. Diagrama de Voronoi: propriedades, diagrama de Delaunay, cota inferior, primitivas geométricas, algoritmo quadrático, algoritmo de divisão-e-conquista. Problemas de localização e intersecção: localização de pontos em polígonos, intersecção de polígonos convexos, intersecção de semiplanos, núcleo de um polígono. Problemas de proximidade: problema do par-mais-próximo, árvore geradora mínima. Arranjos de retas no plano. Ladrilhamentos no Rd.
+
+Par de pontos mais próximos 
+Todas as interseções de segmentos
+Interseção de discos
+Todas as interseções de circunferências
+Versão discreta do problema do sanduíche de presunto
+Triangulação de polígono

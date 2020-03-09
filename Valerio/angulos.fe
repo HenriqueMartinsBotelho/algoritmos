@@ -1,0 +1,38 @@
+STRING
+SPACE_DIMENSION 2
+
+quantity len energy method edge_length global
+
+VERTICES
+1   0 0 fixed
+2   2 0 fixed
+3   1 sqrt(3) fixed
+
+EDGES
+1   1  2
+2   1  3
+
+read
+	
+
+// Esta função recebe três vertices e retorna o cosseno do ângulo entre eles
+// Exemplo: print calculaAngulo(1,2,3) vai calcular entre os vértices 1, 2 e 3
+
+function real calculaAngulo (real vi, real vj, real vk){
+	local cosseno;
+	
+	define vetor1 real[2]; // Criando o vetor 1
+	define vetor2 real[2]; // Criando o vetor 2
+	vetor1[vi] := vertex[vj].x - vertex[vi].x; // primeira coordeanada do vetor 1
+	vetor1[vj] := vertex[vj].y - vertex[vi]. y; // segunda coordenada do vetor 1
+	vetor2[vi] := vertex[vk].x - vertex[vi].x; // primeira coordenada do vetor 2 
+	vetor2[vj] := vertex[vk].y - vertex[vi].y; // segunda coordenada do vetor
+	produtoEscalar := (vetor1[vi] * vetor2[vi] + vetor1[vj] * vetor2[vj]);  //calcula o produto escalar: vetor1 . vetor2
+	moduloV1 := sqrt(vetor1[vi]^2 + vetor1[vj]^2); // calcula modulo do vetor 1
+	moduloV2 := sqrt(vetor2[vi]^2 + vetor2[vj]^2); // calcula modulo do vetor 2
+	cosseno := produtoEscalar/(moduloV1 * moduloV2); // acha cosseno entre os vetores 1 e 2
+	return cosseno;
+};
+
+
+show;

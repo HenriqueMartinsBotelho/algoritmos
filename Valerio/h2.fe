@@ -1,0 +1,43 @@
+vertices
+1 0 0 0
+2 0 1 0
+3 0 0 1
+
+edges
+1 1 2
+2 2 3
+3 3 1
+
+faces
+1 1 2 3
+
+read
+replace_load "st.fe";
+background:=WHITE;
+define vec1 real[2];
+define vec2 real[2];
+foreach vertex vv where valence>1 do{
+ mc:=-1/2;ff:=1;sf:=2;
+ for (fnx:=1;fnx<=valence-1;fnx++)
+  for (snx:=fnx+1;snx<=valence;snx++){
+   vec1[1]:=vv.edge[fnx].x;
+   vec1[2]:=vv.edge[fnx].y;
+   vec2[1]:=vv.edge[snx].x;
+   vec2[2]:=vv.edge[snx].y;
+   ca:=( vec1[1]*vec2[1] + vec1[2]*vec2[2] )/sqrt( vec1[1]^2 + vec1[2]^2 )/sqrt( vec2[1]^2 + vec2[2]^2);
+   if ca>mc then{mc:=ca;ff:=fnx;sf:=snx;};};
+   if mc>1/2 then{
+    set vv.edge[ff] color RED;
+    set vv.edge[sf] color MAGENTA;
+    if (vv.id=vv.edge[ff].vertex[1].id) then 
+     id1:=vv.edge[ff].vertex[2].id else 
+     id1:=vv.edge[ff].vertex[1].id;
+    if (vv.id=vv.edge[sf].vertex[1].id) then 
+     id2:=vv.edge[sf].vertex[2].id else 
+     id2:=vv.edge[sf].vertex[1].id;
+    newe:=new_edge(id1,id2);
+    edge[newe].color:=BLUE;
+    dissolve edges where color=RED;
+    };
+    };
+show

@@ -1,0 +1,183 @@
+vertices
+1 0 0 0
+2 0 1 0
+3 0 0 1
+
+edges
+1 1 2
+2 2 3
+3 3 1
+
+faces
+1 1 2 3
+
+read
+quiet on;
+replace_load "st.fe";
+background:=WHITE;
+define v1 real[2];
+define v2 real[2];
+im:=max(vertices,id);
+ct:=0;dt:=0;cd:=1;
+el:=sum(edges,length);
+ck:=clock;wl:=0;
+quiet off;print ck;quiet on;
+foreach edge ee do wl:=wl+(ee.vertex[1].vw+ee.vertex[2].vw)*ee.length;
+
+function integer fid(integer fn,integer sn,integer tn){
+ if (fn=sn) then return tn else return sn;};
+
+sc:={
+ foreach vertex vv where valence>1 do{
+  mc:=-1/2;ff:=1;sf:=2;
+  if dt then cd:=(vv.id<=im)&&(max(vv.edges,color)<2);
+  if cd then{
+   for (fnx:=1;fnx<=valence-1;fnx++)
+    for (snx:=fnx+1;snx<=valence;snx++){
+     v1[1]:=vv.edge[fnx].x;v1[2]:=vv.edge[fnx].y;
+     v2[1]:=vv.edge[snx].x;v2[2]:=vv.edge[snx].y;
+     ca:=(v1[1]*v2[1]+v1[2]*v2[2])/sqrt(v1[1]^2+v1[2]^2)/sqrt(v2[1]^2+v2[2]^2);
+    if ca>mc then{mc:=ca;ff:=fnx;sf:=snx;};};};
+  if !dt then{
+   ce:=vv.edge[ff].length;be:=vv.edge[sf].length;ae:=sqrt(be^2+ce^2-2*mc*be*ce);
+   if (ce^2>=ae^2+be^2+ae*be)||(be^2>=ae^2+ce^2+ae*ce) then{
+    id1:=fid(vv.id,vv.edge[ff].vertex[1].id,vv.edge[ff].vertex[2].id);
+    id2:=fid(vv.id,vv.edge[sf].vertex[1].id,vv.edge[sf].vertex[2].id);
+    mw:=minimum(vv.vw,minimum(vertex[id1].vw,vertex[id2].vw));
+    if ce>be then{vertex[id2].vw:=mw;vv.edge[ff].color:=RED;vv.edge[sf].color:=MAGENTA;}
+    else{vertex[id1].vw:=mw;vv.edge[ff].color:=MAGENTA;vv.edge[sf].color:=RED;};
+    ne:=new_edge(id1,id2);
+    edge[ne].color:=BLUE;
+    dissolve edges where color=RED;
+    ct:=ct+1;};}
+  else{
+   if mc>-1/2 then{
+    vv.edge[ff].density:=0;vv.edge[ff].color:=CYAN;
+    vv.edge[sf].density:=0;vv.edge[sf].color:=CYAN;
+    id1:=fid(vv.id,vv.edge[ff].vertex[1].id,vv.edge[ff].vertex[2].id);
+    id2:=fid(vv.id,vv.edge[sf].vertex[1].id,vv.edge[sf].vertex[2].id);
+    mw:=minimum(vv.vw,minimum(vertex[id1].vw,vertex[id2].vw));
+    v1:=(vertex[id1].__x+vertex[id2].__x-2*vv.__x)/10;
+    nv:=new_vertex(vv.x+v1[1],vv.y+v1[2]);
+    vertex[nv].vw:=mw;
+    ne:=new_edge(nv,vv.id);edge[ne].color:=BLUE;
+    ne:=new_edge(nv,id1);edge[ne].color:=BLUE;
+    ne:=new_edge(nv,id2);edge[ne].color:=BLUE;
+    ct:=ct+1;};};};
+ set edges density 1;
+ g 10;};
+
+do{ct:=0;sc;} while ct>0;set edges color BLACK;dt:=1;
+
+dc:={ 
+ do{
+  ct:=0;sc;
+  dissolve edges where color=CYAN;
+  foreach edge ee where color=BLUE do if min(ee.vertices,id)>im then ee.color:=RED;}
+ while ct>0;};
+
+dc;
+
+ds:={
+ foreach edge ee where length<0.1 do{
+  for (fnx:=1;fnx<=2;fnx++) if ee.vertex[fnx].fixed then idf:=fnx else idn:=fnx;
+  if idf*idn then{
+   set ee.color YELLOW;
+   idf:=ee.vertex[idf].id;idn:=ee.vertex[idn].id;
+   foreach vertex[idn].edge eee where color!=YELLOW do{
+    for (fnx:=1;fnx<=2;fnx++) if eee.vertex[fnx].id!=idn then idg:=eee.vertex[fnx].id;
+    ne:=new_edge(idg,idf);edge[ne].color:=BLUE;eee.color:=YELLOW;};
+   dissolve edges where color=YELLOW;
+   set edges density 1;};
+  g10;dissolve vertices where valence=0;};};
+
+tc:={
+ set edges color BLACK;
+ foreach edge ee where (min(ee.vertices,id)>im)&&(min(ee.vertices,valence)=3) do{
+  ee.color:=GREEN;fml:=999;sml:=999;
+  foreach ee.vertex vv do
+   fml:=minimum(fml,min(vv.edges where color!=GREEN,length));
+  foreach ee.vertex vv do
+   sml:=minimum(sml,min(vv.edges where (color!=GREEN)&&(length>fml),length));
+  if ((ee.length/sml)<sqrt(3)-1) then{
+   ct:=1;
+   for (fnx:=1;fnx<=3;fnx++){
+    if ee.vertex[1].edge[fnx].color!=GREEN then{
+     v1[ct]:=fid(ee.vertex[1].id,ee.vertex[1].edge[fnx].vertex[ct].id,ee.vertex[1].edge[fnx].vertex[3-ct].id);ct++;
+     if ct>2 then{
+      c1:=ee.vertex[1].edge[fnx].color;
+      ee.vertex[1].edge[fnx].color:=CYAN;};};};
+   ct:=2;
+   for (fnx:=1;fnx<=3;fnx++){
+    if ee.vertex[2].edge[fnx].color!=GREEN then{
+     v2[ct]:=fid(ee.vertex[2].id,ee.vertex[2].edge[fnx].vertex[ct].id,ee.vertex[2].edge[fnx].vertex[3-ct].id);ct--;
+     if ct<1 then{
+      c2:=ee.vertex[2].edge[fnx].color;
+      ee.vertex[2].edge[fnx].color:=CYAN;};};};
+   aa:=vertex[v2[2]].x-vertex[v1[1]].x;
+   bb:=vertex[v2[2]].y-vertex[v1[1]].y;
+   cc:=vertex[v1[2]].x-vertex[v1[1]].x;
+   dd:=vertex[v1[2]].y-vertex[v1[1]].y;
+   id1:=aa*dd-bb*cc;
+   cc:=vertex[v2[1]].x-vertex[v1[1]].x;
+   dd:=vertex[v2[1]].y-vertex[v1[1]].y;
+   id2:=aa*dd-bb*cc;
+   pr1:=id1*id2;
+   aa:=vertex[v2[1]].x-vertex[v1[2]].x;
+   bb:=vertex[v2[1]].y-vertex[v1[2]].y;
+   cc:=vertex[v1[1]].x-vertex[v1[2]].x;
+   dd:=vertex[v1[1]].y-vertex[v1[2]].y;
+   id1:=aa*dd-bb*cc;
+   cc:=vertex[v2[2]].x-vertex[v1[2]].x;
+   dd:=vertex[v2[2]].y-vertex[v1[2]].y;
+   id2:=aa*dd-bb*cc;
+   pr2:=id1*id2;
+   if (pr1>=0)||(pr2>=0) then{ct:=1;id1:=v2[2];v2[2]:=v2[1];v2[1]:=id1;};
+   id1:=ee.vertex[1].id;id2:=ee.vertex[2].id;
+   if ct then{
+    for (fnx:=1;fnx<=3;fnx++){
+     if vertex[id2].edge[fnx].color!=GREEN then
+      if vertex[id2].edge[fnx].color=CYAN then v1[1]:=fnx
+      else v2[2]:=fnx;};
+    vertex[id2].edge[v1[1]].color:=c2;
+    c2:=vertex[id2].edge[v2[2]].color;
+    vertex[id2].edge[v2[2]].color:=CYAN;};
+   ne:=new_edge(id2,v1[2]);edge[ne].color:=c1;
+   ne:=new_edge(id1,v2[1]);edge[ne].color:=c2;
+   dissolve edges where color=CYAN; 
+   set edges density 1;
+   g10;};
+   ee.color:=RED;};
+ g20;set edges color BLACK;};
+
+bl:={
+ for (fnx:=1;fnx<=2;fnx++){
+  foreach vertex vv where (valence=3)&&(!fixed) do{
+   fix vertices where id!=vv.id;g5;
+   unfix vertices where id>im;};
+  if fnx=1 then dc;};
+ g20;};
+
+pt:={
+ sl:=0;
+ foreach edge ee do sl:=sl+(ee.vertex[1].vw+ee.vertex[2].vw)*ee.length;
+ quiet off;
+ printf "Time=%f\n |P|=%f\n ||P||=%f\n |T|=%f\n ||T||=%f\n",clock-ck,el,wl/2,sum(edges,length),sl/2;
+ quiet on;
+};
+
+ds;bl 10;ds;tc;dc;ds;bl 10;tc;bl 10;ds;bl 10;pt;
+
+/*
+foreach vertex vv where valence>1 do{
+ mc:=-0.46;ff:=1;sf:=2;
+ for (fnx:=1;fnx<=valence-1;fnx++)
+  for (snx:=fnx+1;snx<=valence;snx++){
+   v1[1]:=vv.edge[fnx].x;v1[2]:=vv.edge[fnx].y;
+   v2[1]:=vv.edge[snx].x;v2[2]:=vv.edge[snx].y;
+   ca:=(v1[1]*v2[1]+v1[2]*v2[2])/sqrt(v1[1]^2+v1[2]^2)/sqrt(v2[1]^2+v2[2]^2);
+   if ca>mc then{mc:=ca;ff:=fnx;sf:=snx;};};
+   if ca>-0.46 then{print ca;set vv.edges color RED;};};
+*/
+
+show;

@@ -1,0 +1,1 @@
+ xdg-open "http://fb.com" 

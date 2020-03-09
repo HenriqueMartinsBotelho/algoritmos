@@ -1,0 +1,12 @@
+package estruturadados.vetor.teste;
+
+import estruturadados.vetor.Vetor;
+
+public class TesteVetor {
+
+	public static void main(String[] args) {
+		Vetor vetor = new Vetor(5);
+
+	}
+
+}
