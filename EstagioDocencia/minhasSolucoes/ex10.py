@@ -21,7 +21,7 @@ print(p)
 
 
 ### Testes ####
-assert plato([1,1,1,2,2,2,2,3,3]) == [3,6], "1 - Falhou aqui"
-assert plato([1,1,1,1,1,2,2,2,2,3,3]) == [0,4], "2 - Falhou aqui"
-assert plato([]) == 0, "3 - Falhou aqui"
+assert plato([1,1,1,2,2,2,2,3,3]) == [3,6], "1 - aqui"
+assert plato([1,1,1,1,1,2,2,2,2,3,3]) == [0,4], "2 - aqui"
+assert plato([]) == 0, "3 - aqui"
 

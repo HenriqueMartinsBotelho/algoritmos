@@ -15,6 +15,6 @@ print(s)
 
 ### Testes ####
 def test_f():
-    assert f([10,21,32,40], 53) == [1,2], "Errado"
+    assert f([10,21,32,40], 53) == [1,2], "1"
 
 test_f() 
