@@ -1,0 +1,14 @@
+def numero_par(x):
+  return x%2==0
+
+print(numero_par (23))
+print(numero_par(100))
+
+
+def PP(x: int)->int:
+    return QQ(x) + QQ(x+1)
+
+def QQ(y: int)-> int:
+    return y*2
+
+print (PP(int(input)))    

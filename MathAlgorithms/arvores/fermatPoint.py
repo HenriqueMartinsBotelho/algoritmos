@@ -1,1 +1,0 @@
-''' Este algoritmo recebe três pontos no plano e cálcula o ponto de Fermat'''

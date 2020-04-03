@@ -1,0 +1,9 @@
+number1= input("first number:")
+number2= input("second number:")
+
+sum = float(number1) + float(number2)
+
+
+
+print("\nSoma de {0} e {1} é igual a: {2}" .format(number1, number2, sum))
+print("\nSoma de {0} e {1} é igual a: {2}" .format(number1,number2,sum))

@@ -1,0 +1,9 @@
+print ("Juros Simples e Composto: ")
+#Juros Simples
+C = input("Qual é o seu capital?  ")
+I = input("Insira a sua taxa em números decimais: ")
+T = input("Qual será o tempo de Aplicação: ")
+
+Res=float(C)*float(I)*float(T)
+
+print ("O valor sera de R$ {0} " .format(Res))  

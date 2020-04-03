@@ -1,0 +1,15 @@
+print("Áreas de retângulo, triângulo, trapézio e círculo")
+
+ 
+number1 = input("\nDigite a base maior: ")
+number2 = input("\nDigite a altura: ")
+number3 = input("\nDigite a base menor: ")
+number4 = input("\nDigite o raio: ")
+
+ret = float(number1)*float(number2)
+tri = ret/2
+tra = tri+float(number3)*float(number2)/2
+cir = 3.1416*float(number4)*float(number4)
+
+
+print("\nÁreas: retângulo: {0},triângulo: {1},trapézio: {2} e circunferência: {3}" .format(ret,tri,tra,cir))

@@ -1,0 +1,10 @@
+print ("Juros simples e compostos")
+
+C = input("Digite o capital: ")
+I = input("Digite a taxa de juros: ")
+T = input("Digite o tempo: ")
+
+Ress = float(C)*(1+float(I)*float(T))
+ResC = float(C)*(1+float(I))**float(T)
+
+print ("Valor final: {0}".format (Ress, ResC))
