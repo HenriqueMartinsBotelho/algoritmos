@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+C:\Users\Henrique\Desktop\Algoritmos\.metadata\.plugins\org.eclipse.jdt.core
-2524174724.index
-4171416947.index
-113558702.index

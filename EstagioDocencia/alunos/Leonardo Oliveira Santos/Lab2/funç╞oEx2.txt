@@ -1,7 +1,0 @@
-import math
-def pi1():
-  return math.sqrt(7 + math.sqrt(6+ math.sqrt(5)))
-
-print(pi1())
-
-print(math.pi - pi1())

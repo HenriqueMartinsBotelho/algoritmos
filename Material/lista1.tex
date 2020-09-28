@@ -1,0 +1,127 @@
+\documentclass{exam}
+
+\usepackage[12pt]{extsizes}
+\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} 
+\usepackage{amsthm,amsmath, amssymb}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption} %para usar o caption sem numeracao automatica
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning,shapes,fit,calc}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução: }\noindent}
+
+\newtheorem{Teorema}{Teorema}
+\newtheorem{Lema}{Lema}
+
+\printanswers        %DESCOMENTAR PARA MOSTRAR AS RESPOSTAS
+\begin{document}
+	
+	\section{"Solução" de alguns exercícios de algoritmos e estrutura de dados}
+	
+	\cancelspace
+	
+	\begin{questions}
+		
+		\question  É verdade que $4n^2 = O(n^2)$ 
+		\begin{solution}[.2in]
+			Sim. Temos que $4n^2 \le 4n^2$, então basta definir: $C = 4, n_0 = 1$.
+		\end{solution} 
+		
+		\question É verdade que $2^{0.694} = O(2^n)$
+		\begin{solution}
+			Sim, pois $2^{0.694} \le 1.2^n \; \forall n > 1$. $C = 0, \;\ n_0 = 1$.
+		\end{solution}
+		
+		\question É verdade que $10n^2 + 5n + 3 = O(n^2)$?
+		\begin{solution}
+			Sim, de fato temos: $10n^2 + 5n + 3 \le 10n^2 + 5n^2 + 3n^2 = (10 + 5 + 3).n^2 = 18n^2 = O(n^2)$, com $C = 18$ e $n_0 = 1$.
+		\end{solution}
+	
+		\question É verdade que $7n^2 = O(n)$?
+		\begin{solution}
+			Não. Suponha que existam $c,n_0$ tal que $7n^2 \le c.n, \; \forall n > n_0$. Então dividindo ambos os lados da desigualdade
+			por $n$ temos $7n \le c, \; \forall n > n_0$. O que é absurdo pois $c$ é constante e $7n$ tende a infinito.
+		\end{solution}
+		
+		\question É verdade que $\frac{1}{2}n^2 + 3n = O(n)$?
+		\begin{solution}
+			Não.
+		\end{solution}
+	
+		\question É verdade que $\frac{1}{2}n^2 + 3n = O(n^3)$?
+		\begin{solution}
+			Sim.
+		\end{solution}
+
+		\question É verdade que $n^k = O(n^{k-1})$?
+		\begin{solution}
+		Não. Suponha que existam $c,n_0$ tal que $n^k \le c . n^{k-1}$. Então temos $\frac{n^k}{n^{k-1}} \le c$ e 
+		daí que $n \le c$, para todo $n > n_0$. Absurdo.  
+		\end{solution}
+	
+		\question É verdade que $a_kn^k + \cdots + a_1n + a_0 = O(n^k)$?
+		\begin{solution}
+			Sim, pois  $a_kn^k + \cdots + a_1n + a_0 \le a_kn^k + \cdots + a_1n^k + n^k =
+			(a_n + a_{n-1} \cdots a_0)n^k = O(n^k)$.
+		\end{solution}
+				
+		\question É verdade que $100n + \log n = \Theta(n + \log^2 n)$?
+		\begin{solution}
+			Sim, $100n + \log n \le 100n + 100 \log^2 n = 100(n + log^2 n)$, temos
+			$c = 100$ e $n_0 = 1$. 
+		\end{solution}
+	
+		\question $\log 2n = \Theta(\log 3n)$?
+		\begin{solution}
+			Provemos primeiro que é $O(\log 3n)$:\\
+			$\log 2n = \log 2 + \log n$ e $\log 3n = \log 3 + \log n$. Como $\log 3 > \log 2$ podemos concluir que
+			$\log 2n \le \log 3n$ que implica em $\log 2n \le 1. \log 3n \;\; \forall n > 1$. Logo, $c = 1$ e $n_0 = 1$.\\
+			Agora, veremos que também é $\Omega$. Temos $\log 2n < \log 3n$ queremos achar $c$ tal que $\log 2n \ge c . \log 3n$ 
+			seja verdade, então se tomarmos $c = \frac{\log 2n}{\log 3n}$ ou menor temos: $\log 2 \ge \log 3n. \frac{\log 2n}{\log 3n}
+			\; \forall n > 1$.
+		\end{solution}
+	
+		\question É verdade que $\log_a n = \Theta(\log_b n)$ com $a$ e $b$ inteiros positivos?
+		\begin{solution}
+			Sim, é verdade. Sem perca de generalidade suponhamos $\log_a n < \log_b n $ e daí:
+			Primeiro queremos achar $c$ tal que $$\log_a n \le \log_b n$$ para isso tomemos
+			$c = \frac{log_a n }{log_b n}$ ou menos e temos garantidamente:
+			$$\log_a b \le \log_b n.\frac{\log_a n}{\log_b n}$$
+			Analogamente, se $c = \frac{\log_b n}{\log_a n}$ ou maior temos: 
+			$$\log_a n \ge log_b n. \frac{\log_b n}{\log_a n}$$ 
+			
+			
+		\end{solution}
+
+		\question É verdade que $(n + a)^b = \Theta(n^b)$ com $a$ e $b$ inteiros positivos?
+		\begin{solution}
+			acho que dá para fazer por indução em $b$.
+		\end{solution}
+	
+		\question É verdade que $4 \log n + 3 \sqrt{n} + 5n^2 = \Theta(n^2)$?
+		\begin{solution}
+			É verdade.
+		\end{solution}
+	
+		\question É verdade que $2^{5n} = O(2^n)$?
+		\begin{solution}
+			Sim, $2^{5n} = (2^5)^n > c.2^n$, pois $c$ é uma constante. 
+		\end{solution}
+
+
+
+
+
+
+
+\end{questions}
+		
+\end{document}		
+		
+		

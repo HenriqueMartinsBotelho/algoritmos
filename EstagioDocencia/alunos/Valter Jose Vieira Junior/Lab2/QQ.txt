@@ -1,7 +1,0 @@
-def PP(x: int)->int:
-  return QQ(x) + QQ(x+1)
-
-def QQ(y: int)->int:
-  return y*2
-
-  print (PP(int(input())))  

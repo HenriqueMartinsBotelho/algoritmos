@@ -1,7 +1,0 @@
-def imprime_apresentacao():
-
-  print("Bem-vindo à disciplina")
-  print("Processamento da Informação")
-  print("UFABC")
-
-imprime_apresentacao()
