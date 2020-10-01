@@ -1,0 +1,1 @@
+var [x, y] = input.split(" ").map(item => parseInt(item))
