@@ -1,8 +1,8 @@
-const Stack = require("./stack");
+import Stack from "./stack";
 
 function exercicio1() {
   let pilha = new Stack();
-  pilha.pop(3);
+  pilha.push(15);
   pilha.print();
 }
 

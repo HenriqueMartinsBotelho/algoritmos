@@ -44,4 +44,4 @@ stack.push(20);
 console.log(stack.peek());
 stack.print();
 
-module.exports = Stack;
+export default Stack;

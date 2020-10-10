@@ -1,0 +1,21 @@
+{
+  "name": "algoritmos",
+  "version": "1.0.0",
+  "description": "Container, List, Tuple, Multimap, Set, Multiset (bag)\r Stack, Queue, Double-ended queue, Graph",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "start": "ts-node ./Queue/TS/queue.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenriqueMartinsBotelho/algoritmos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HenriqueMartinsBotelho/algoritmos/issues"
+  },
+  "homepage": "https://github.com/HenriqueMartinsBotelho/algoritmos#readme"
+}
