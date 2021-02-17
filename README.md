@@ -12,10 +12,11 @@
 | Queue              |            aa             |
 | Double-ended queue |            aa             |
 | Graph              |     Adjacency Matrix      |
+| Priority queue     |           Heap            |
 
 # Stack
 
-- [x] [ Typecript](https://github.com/HenriqueMartinsBotelho/algoritmos/blob/master/Stack/TS/stack.ts)
+-   [x] [ TypeScript](https://github.com/HenriqueMartinsBotelho/algoritmos/blob/master/Stack/TS/stack.ts)
 
 | Operation | Complexity |                Description |
 | --------- | :--------: | -------------------------: |
@@ -31,7 +32,7 @@
 
 # Queue
 
-- [x] [ Typecript](https://github.com/HenriqueMartinsBotelho/algoritmos/blob/master/Queue/TS/queue.ts)
+-   [x] [ TypeScript](https://github.com/HenriqueMartinsBotelho/algoritmos/blob/master/Queue/TS/queue.ts)
 
 | Operation | Complexity |                       Description |
 | --------- | :--------: | --------------------------------: |
@@ -44,5 +45,19 @@
 
 # Single Linked List
 
-- [x] [ Javascript](http://github.com/)
-- [x] [ Typecript](http://github.com/)
+-   [x] [ Javascript](http://github.com/)
+-   [x] [ Typecript](http://github.com/)
+
+# Heap
+
+-   [x] [ Javascript](http://github.com/)
+-   [x] [ Typecript](http://github.com/)
+
+| Operation           | Complexity  |                    Description |
+| ------------------- | :---------: | -----------------------------: |
+| corrigeHeapDescendo | O(log(n/i)) |        Corrige o Heap Descendo |
+| aa                  |    Θ(1)     |   Add item to the end of queue |
+| bb                  |    Θ(1)     | Returns first element of queue |
+| cc                  |    Θ(1)     |       Verify if queue is empty |
+| dd                  |    Θ(1)     |     Returns number of elements |
+| ee                  |    Θ(n)     |                    Print Queue |
