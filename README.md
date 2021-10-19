@@ -1,18 +1,18 @@
 # List of abstract data type and Data Structures
 
-| Abstract Data Type |       Data Stucture       |
-| ------------------ | :-----------------------: |
-| Container          |            aa             |
-| List               | Array, Single Linked List |
-| Tuple              |         are neat          |
-| Multimap           |            aa             |
-| Set                |            aa             |
-| Multiset           |            aa             |
-| Stack              |            aa             |
-| Queue              |            aa             |
-| Double-ended queue |            aa             |
-| Graph              |     Adjacency Matrix      |
-| Priority queue     |           Heap            |
+| Abstract Data Type |           Data Stucture            |
+| ------------------ | :--------------------------------: |
+| Container          |                 --                 |
+| List               |     Array, Single Linked List      |
+| Tuple              |                 --                 |
+| Multimap           |                 --                 |
+| Set                |                 --                 |
+| Multiset           |                 --                 |
+| Stack              |         Array, Linked List         |
+| Queue              |         Array, Linked List         |
+| Double-ended queue | Dynamic array, Doubly Linked List. |
+| Graph              |  Adjacency Matrix, Adjacency List  |
+| Priority queue     |                Heap                |
 
 # Stack
 
